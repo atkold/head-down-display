@@ -65,7 +65,7 @@ abstract class InGameHudMixin {
     private static int pressTicks;
 
     @Unique
-    private static void translate(final MatrixStack matrices) {
+    private static void translate(MatrixStack matrices) {
         if (HDDConfig.instance.hotbar.lower) {
             matrices.push();
             matrices.translate(0, frameY, 0);
@@ -73,14 +73,14 @@ abstract class InGameHudMixin {
     }
 
     @Unique
-    private static void pop(final MatrixStack matrices) {
+    private static void pop(MatrixStack matrices) {
         if (HDDConfig.instance.hotbar.lower) {
             matrices.pop();
         }
     }
 
     @Inject(method = "tick", at = @At("RETURN"))
-    public void tick(final CallbackInfo info) {
+    public void tick(CallbackInfo info) {
         if (HDDConfig.instance.hotbar.hideLevel == HideLevel.ALL) {
             maxY = this.scaledHeight;
         } else if (HDDConfig.instance.hotbar.hideLevel == HideLevel.CUSTOM) {
@@ -89,14 +89,14 @@ abstract class InGameHudMixin {
             maxY = HDDConfig.instance.hotbar.hideLevel.maxY;
         }
 
-        final ClientPlayerEntity player = this.client.player;
+        ClientPlayerEntity player = this.client.player;
         boolean reveal = false;
 
         if (player != null) {
-            final Triggers triggers = HDDConfig.instance.hotbar.trigger;
+            Triggers triggers = HDDConfig.instance.hotbar.trigger;
 
             if (triggers.slot) {
-                final PlayerInventory inventory = player.inventory;
+                PlayerInventory inventory = player.inventory;
 
                 if (reveal = inventory != null && selectedSlot != inventory.selectedSlot) {
                     selectedSlot = inventory.selectedSlot;
@@ -104,7 +104,7 @@ abstract class InGameHudMixin {
             }
 
             if (!reveal && triggers.item) {
-                final ItemStack mainHandStack = player.getMainHandStack();
+                ItemStack mainHandStack = player.getMainHandStack();
 
                 if (reveal = selectedItem != mainHandStack) {
                     selectedItem = mainHandStack;
@@ -112,7 +112,7 @@ abstract class InGameHudMixin {
             }
 
             if (!reveal && triggers.key) {
-                for (final KeyBinding key : hotbarKeys) {
+                for (KeyBinding key : hotbarKeys) {
                     if (key.isPressed()) {
                         reveal = true;
 
@@ -168,7 +168,7 @@ abstract class InGameHudMixin {
     }
 
     @Inject(method = "render", at = @At("HEAD"))
-    public void computeFramePosition(final MatrixStack matrices, final float tickDelta, final CallbackInfo info) {
+    public void computeFramePosition(MatrixStack matrices, float tickDelta, CallbackInfo info) {
         frameY = previousY + (y - previousY) * tickDelta;
     }
 
@@ -176,9 +176,9 @@ abstract class InGameHudMixin {
                index = 3,
                at = @At(value = "INVOKE",
                         target = "Lcom/mojang/blaze3d/systems/RenderSystem;color4f(FFFF)V"))
-    protected float fadeHotbar(final float alpha) {
+    protected float fadeHotbar(float alpha) {
         if (HDDConfig.instance.hotbar.fade && direction >= 0) {
-            final float fadeAlpha = (HDDConfig.instance.hotbar.fadeEnd - ticksSinceTop) / (float) HDDConfig.instance.hotbar.fadeDuration;
+            float fadeAlpha = (HDDConfig.instance.hotbar.fadeEnd - ticksSinceTop) / (float) HDDConfig.instance.hotbar.fadeDuration;
 
             if (fadeAlpha < 0) {
                 return 0;
@@ -195,19 +195,19 @@ abstract class InGameHudMixin {
     }
 
     @Inject(method = "renderHotbar", at = @At("HEAD"))
-    protected void lowerHotbar(final float tickDelta, final MatrixStack matrices, final CallbackInfo info) {
+    protected void lowerHotbar(float tickDelta, MatrixStack matrices, CallbackInfo info) {
         translate(matrices);
     }
 
     @Inject(method = "renderHotbar",
             at = @At(value = "FIELD",
                      target = "Lnet/minecraft/client/options/GameOptions;attackIndicator:Lnet/minecraft/client/options/AttackIndicator;"))
-    protected void cleanUpHotbar(final float tickDelta, final MatrixStack matrices, final CallbackInfo info) {
+    protected void cleanUpHotbar(float tickDelta, MatrixStack matrices, CallbackInfo info) {
         pop(matrices);
     }
 
     @Inject(method = "renderHotbarItem", at = @At("HEAD"))
-    private void lowerItem(final int x, final int y0, final float tickDelta, final PlayerEntity playerEntity, final ItemStack itemStack, final CallbackInfo info) {
+    private void lowerItem(int x, int y0, float tickDelta, PlayerEntity playerEntity, ItemStack itemStack, CallbackInfo info) {
         if (HDDConfig.instance.hotbar.lower) {
             RenderSystem.pushMatrix();
             RenderSystem.translatef(0, frameY, 0);
@@ -215,59 +215,59 @@ abstract class InGameHudMixin {
     }
 
     @Inject(method = "renderHotbarItem", at = @At("RETURN"))
-    private void cleanUpItem(final int x, final int y0, final float tickDelta, final PlayerEntity playerEntity, final ItemStack itemStack, final CallbackInfo info) {
+    private void cleanUpItem(int x, int y0, float tickDelta, PlayerEntity playerEntity, ItemStack itemStack, CallbackInfo info) {
         if (HDDConfig.instance.hotbar.lower) {
             RenderSystem.popMatrix();
         }
     }
 
     @Inject(method = "renderStatusBars", at = @At("HEAD"))
-    private void lowerStatusBars(final MatrixStack matrices, final CallbackInfo ci) {
+    private void lowerStatusBars(MatrixStack matrices, CallbackInfo ci) {
         translate(matrices);
     }
 
     @Inject(method = "renderStatusBars", at = @At("RETURN"))
-    private void cleanUpStatusBars(final MatrixStack matrices, final CallbackInfo ci) {
+    private void cleanUpStatusBars(MatrixStack matrices, CallbackInfo ci) {
         pop(matrices);
     }
 
     @Inject(method = "renderMountHealth", at = @At("HEAD"))
-    private void lowerMountHealth(final MatrixStack matrices, final CallbackInfo info) {
+    private void lowerMountHealth(MatrixStack matrices, CallbackInfo info) {
         translate(matrices);
     }
 
     @Inject(method = "renderMountHealth", at = @At("RETURN"))
-    private void cleanUpMountHealth(final MatrixStack matrices, final CallbackInfo info) {
+    private void cleanUpMountHealth(MatrixStack matrices, CallbackInfo info) {
         pop(matrices);
     }
 
     @Inject(method = "renderMountJumpBar", at = @At("HEAD"))
-    public void lowerMountJumpBar(final MatrixStack matrices, final int x, final CallbackInfo info) {
+    public void lowerMountJumpBar(MatrixStack matrices, int x, CallbackInfo info) {
         translate(matrices);
     }
 
     @Inject(method = "renderMountJumpBar", at = @At("RETURN"))
-    public void cleanUpJumpBar(final MatrixStack matrices, final int x, final CallbackInfo info) {
+    public void cleanUpJumpBar(MatrixStack matrices, int x, CallbackInfo info) {
         pop(matrices);
     }
 
     @Inject(method = "renderExperienceBar", at = @At("HEAD"))
-    public void lowerExperienceBar(final MatrixStack matrices, final int x, final CallbackInfo info) {
+    public void lowerExperienceBar(MatrixStack matrices, int x, CallbackInfo info) {
         translate(matrices);
     }
 
     @Inject(method = "renderExperienceBar", at = @At("RETURN"))
-    public void cleanUpExperienceBar(final MatrixStack matrices, final int x, final CallbackInfo info) {
+    public void cleanUpExperienceBar(MatrixStack matrices, int x, CallbackInfo info) {
         pop(matrices);
     }
 
     @Inject(method = "renderHeldItemTooltip", at = @At("HEAD"))
-    private void lowerTooltip(final MatrixStack matrices, final CallbackInfo info) {
+    private void lowerTooltip(MatrixStack matrices, CallbackInfo info) {
         translate(matrices);
     }
 
     @Inject(method = "renderHeldItemTooltip", at = @At("RETURN"))
-    private void cleanUpTooltip(final MatrixStack matrices, final CallbackInfo info) {
+    private void cleanUpTooltip(MatrixStack matrices, CallbackInfo info) {
         pop(matrices);
     }
 }
