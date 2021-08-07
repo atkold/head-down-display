@@ -1,11 +1,11 @@
-package user11681.headsdowndisplay.config.hotbar;
+package net.auoeke.headsdowndisplay.config.hotbar;
 
 import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry.Gui.CollapsibleObject;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry.Gui.EnumHandler;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry.Gui.Excluded;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry.Gui.Tooltip;
-import user11681.headsdowndisplay.config.hotbar.entry.HideLevel;
-import user11681.headsdowndisplay.config.hotbar.entry.Triggers;
+import net.auoeke.headsdowndisplay.config.hotbar.entry.HideLevel;
+import net.auoeke.headsdowndisplay.config.hotbar.entry.Triggers;
 
 public class Hotbar {
     @Excluded

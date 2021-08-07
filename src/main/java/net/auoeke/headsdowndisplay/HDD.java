@@ -1,13 +1,13 @@
-package user11681.headsdowndisplay;
+package net.auoeke.headsdowndisplay;
 
+import net.auoeke.headsdowndisplay.config.HDDConfig;
+import net.auoeke.headsdowndisplay.config.arm.entry.HideCondition;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.impl.client.keybinding.KeyBindingRegistryImpl;
-import net.minecraft.client.options.KeyBinding;
-import user11681.headsdowndisplay.config.HDDConfig;
-import user11681.headsdowndisplay.config.arm.ArmConfiguration;
-import user11681.headsdowndisplay.config.arm.entry.HideCondition;
+import net.minecraft.client.option.KeyBinding;
+import net.auoeke.headsdowndisplay.config.arm.ArmConfiguration;
 
 @SuppressWarnings({"unused", "RedundantSuppression"})
 public class HDD implements ClientModInitializer {

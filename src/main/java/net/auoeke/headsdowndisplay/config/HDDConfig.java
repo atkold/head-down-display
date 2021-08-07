@@ -1,4 +1,4 @@
-package user11681.headsdowndisplay.config;
+package net.auoeke.headsdowndisplay.config;
 
 import me.sargunvohra.mcmods.autoconfig1u.ConfigData;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.Config;
@@ -6,9 +6,9 @@ import me.sargunvohra.mcmods.autoconfig1u.annotation.Config.Gui.Background;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry.Category;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry.Gui.Excluded;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry.Gui.TransitiveObject;
-import user11681.headsdowndisplay.HDD;
-import user11681.headsdowndisplay.config.arm.ArmConfiguration;
-import user11681.headsdowndisplay.config.hotbar.Hotbar;
+import net.auoeke.headsdowndisplay.HDD;
+import net.auoeke.headsdowndisplay.config.arm.ArmConfiguration;
+import net.auoeke.headsdowndisplay.config.hotbar.Hotbar;
 
 @Config(name = HDD.ID)
 @Background("textures/block/andesite.png")

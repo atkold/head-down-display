@@ -1,10 +1,12 @@
-package user11681.headsdowndisplay.mixin;
+package net.auoeke.headsdowndisplay.mixin;
 
+import net.auoeke.headsdowndisplay.HDD;
+import net.auoeke.headsdowndisplay.config.HDDConfig;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.client.options.KeyBinding;
+import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -17,10 +19,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import user11681.headsdowndisplay.HDD;
-import user11681.headsdowndisplay.config.HDDConfig;
-import user11681.headsdowndisplay.config.hotbar.entry.HideLevel;
-import user11681.headsdowndisplay.config.hotbar.entry.Triggers;
+import net.auoeke.headsdowndisplay.config.hotbar.entry.HideLevel;
+import net.auoeke.headsdowndisplay.config.hotbar.entry.Triggers;
 
 @Mixin(InGameHud.class)
 abstract class InGameHudMixin {
@@ -96,7 +96,7 @@ abstract class InGameHudMixin {
             Triggers triggers = HDDConfig.instance.hotbar.trigger;
 
             if (triggers.slot) {
-                PlayerInventory inventory = player.inventory;
+                PlayerInventory inventory = player.getInventory();
 
                 if (reveal = inventory != null && selectedSlot != inventory.selectedSlot) {
                     selectedSlot = inventory.selectedSlot;
@@ -175,7 +175,7 @@ abstract class InGameHudMixin {
     @ModifyArg(method = "renderHotbar",
                index = 3,
                at = @At(value = "INVOKE",
-                        target = "Lcom/mojang/blaze3d/systems/RenderSystem;color4f(FFFF)V"))
+                        target = "Lcom/mojang/blaze3d/systems/RenderSystem;setShaderColor(FFFF)V"))
     protected float fadeHotbar(float alpha) {
         if (HDDConfig.instance.hotbar.fade && direction >= 0) {
             float fadeAlpha = (HDDConfig.instance.hotbar.fadeEnd - ticksSinceTop) / (float) HDDConfig.instance.hotbar.fadeDuration;
@@ -201,23 +201,25 @@ abstract class InGameHudMixin {
 
     @Inject(method = "renderHotbar",
             at = @At(value = "FIELD",
-                     target = "Lnet/minecraft/client/options/GameOptions;attackIndicator:Lnet/minecraft/client/options/AttackIndicator;"))
+                     target = "Lnet/minecraft/client/option/GameOptions;attackIndicator:Lnet/minecraft/client/option/AttackIndicator;"))
     protected void cleanUpHotbar(float tickDelta, MatrixStack matrices, CallbackInfo info) {
         pop(matrices);
     }
 
     @Inject(method = "renderHotbarItem", at = @At("HEAD"))
-    private void lowerItem(int x, int y0, float tickDelta, PlayerEntity playerEntity, ItemStack itemStack, CallbackInfo info) {
+    private void lowerItem(int x, int y, float tickDelta, PlayerEntity player, ItemStack stack, int seed, CallbackInfo ci) {
         if (HDDConfig.instance.hotbar.lower) {
-            RenderSystem.pushMatrix();
-            RenderSystem.translatef(0, frameY, 0);
+            MatrixStack matrixes = RenderSystem.getModelViewStack();
+            matrixes.push();
+            matrixes.translate(0, frameY, 0);
         }
     }
 
     @Inject(method = "renderHotbarItem", at = @At("RETURN"))
-    private void cleanUpItem(int x, int y0, float tickDelta, PlayerEntity playerEntity, ItemStack itemStack, CallbackInfo info) {
+    private void cleanUpItem(int x, int y, float tickDelta, PlayerEntity player, ItemStack stack, int seed, CallbackInfo ci) {
         if (HDDConfig.instance.hotbar.lower) {
-            RenderSystem.popMatrix();
+            RenderSystem.getModelViewStack().pop();
+            RenderSystem.applyModelViewMatrix();
         }
     }
 

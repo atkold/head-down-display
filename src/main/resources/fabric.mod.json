@@ -5,7 +5,7 @@
     "name": "Heads down display",
     "description": "a mod that allows hiding arm and hotbar when not in use",
     "authors": [
-        "user11681"
+        "auoeke"
     ],
     "contact": {
         "repo": "https://github.com/user11681/headsdowndisplay"
@@ -15,10 +15,10 @@
     "environment": "client",
     "entrypoints": {
         "client": [
-            "user11681.headsdowndisplay.HDD"
+            "net.auoeke.headsdowndisplay.HDD"
         ],
         "modmenu": [
-            "user11681.headsdowndisplay.integration.HDDModMenuIntegration"
+            "net.auoeke.headsdowndisplay.integration.HDDModMenuIntegration"
         ]
     },
     "mixins": [

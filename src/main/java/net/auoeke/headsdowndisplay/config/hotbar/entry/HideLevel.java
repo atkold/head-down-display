@@ -1,4 +1,4 @@
-package user11681.headsdowndisplay.config.hotbar.entry;
+package net.auoeke.headsdowndisplay.config.hotbar.entry;
 
 public enum HideLevel {
     HOTBAR(23),

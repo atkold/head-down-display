@@ -1,11 +1,11 @@
-package user11681.headsdowndisplay.config.arm;
+package net.auoeke.headsdowndisplay.config.arm;
 
+import net.auoeke.headsdowndisplay.config.arm.entry.HideCondition;
+import net.auoeke.headsdowndisplay.config.arm.entry.HideType;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry.Gui.EnumHandler;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry.Gui.Tooltip;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Hand;
-import user11681.headsdowndisplay.config.arm.entry.HideCondition;
-import user11681.headsdowndisplay.config.arm.entry.HideType;
 
 public class ArmConfiguration {
     @EnumHandler(option = EnumHandler.EnumDisplayOption.BUTTON)

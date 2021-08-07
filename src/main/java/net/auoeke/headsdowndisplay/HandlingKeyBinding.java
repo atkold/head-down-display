@@ -1,6 +1,6 @@
-package user11681.headsdowndisplay;
+package net.auoeke.headsdowndisplay;
 
-import net.minecraft.client.options.KeyBinding;
+import net.minecraft.client.option.KeyBinding;
 
 public class HandlingKeyBinding extends KeyBinding {
     private final Runnable handler;

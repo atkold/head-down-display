@@ -2,15 +2,15 @@ plugins {
     id("wheel-fabric").version("latest.integration")
 }
 
-group = "user11681"
-version = "0.1.0"
+group = "net.auoeke"
+version = "0.1.1"
 
 dependencies {
     modInclude("api-base")
     modInclude("api-key-bindings")
-    modInclude("api-resource-loader:0.3.1+")
+    modInclude("api-resource-loader")
     modInclude("api-screen")
     bloatedInclude("auto-config")
-    bloatedInclude("cloth-config:4+")
-    intransitive("mod-menu:1.16+")
+    bloatedInclude("cloth-config")
+    intransitive("mod-menu")
 }
