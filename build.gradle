@@ -29,12 +29,3 @@ dependencies {
     bloatedInclude("cloth-config")
     mod("mod-menu")
 }
-
-configurations.all {Configuration c ->
-    def ds = c.dependencies
-    ds.all {Dependency d ->
-        if (d.name == "noauth") {
-            ds.remove(d)
-        }
-    }
-}
