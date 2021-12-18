@@ -1,0 +1,43 @@
+{
+    "key.head-down-display.toggleHotbar": "toggle hotbar",
+    "key.head-down-display.toggleMain": "toggle main arm",
+    "key.head-down-display.toggleSecondary": "toggle secondary arm",
+    "key.head-down-display.toggleArms": "toggle arms",
+    "key.category.head-down-display": "heads down display",
+
+    "text.autoconfig.head-down-display.title": "heads down display",
+
+    "text.autoconfig.head-down-display.category.default": "hotbar",
+    "text.autoconfig.head-down-display.category.arm": "arm",
+
+    "text.autoconfig.head-down-display.option.hotbar.fade": "fade",
+    "text.autoconfig.head-down-display.option.hotbar.lower": "lower",
+    "text.autoconfig.head-down-display.option.hotbar.revealAutomatically": "reveal automatically",
+    "text.autoconfig.head-down-display.option.hotbar.hideAutomatically": "hide automatically",
+    "text.autoconfig.head-down-display.option.hotbar.hideLevel": "hide level",
+    "text.autoconfig.head-down-display.option.hotbar.hideLevel.@Tooltip": "the portion of the hotbar that should be hidden",
+    "text.autoconfig.head-down-display.option.hotbar.trigger": "revelation triggers",
+    "text.autoconfig.head-down-display.option.hotbar.trigger.slot": "slot change",
+    "text.autoconfig.head-down-display.option.hotbar.trigger.item": "main hand item change",
+    "text.autoconfig.head-down-display.option.hotbar.trigger.key": "hotbar keys",
+    "text.autoconfig.head-down-display.option.hotbar.trigger.@Tooltip": "the events that reveal the hotbar",
+    "text.autoconfig.head-down-display.option.hotbar.maxY": "maximum y offset",
+    "text.autoconfig.head-down-display.option.hotbar.maxY.@Tooltip": "the maximum y offset when the hide level is set to \"CUSTOM\"",
+    "text.autoconfig.head-down-display.option.hotbar.lowerDelay": "lower delay",
+    "text.autoconfig.head-down-display.option.hotbar.lowerDelay.@Tooltip": "the time in ticks after which the hotbar starts lowering",
+    "text.autoconfig.head-down-display.option.hotbar.fadeDelay": "fade delay",
+    "text.autoconfig.head-down-display.option.hotbar.fadeDelay.@Tooltip": "the time in ticks after which the hotbar starts fading",
+    "text.autoconfig.head-down-display.option.hotbar.fadeDuration": "fade duration",
+    "text.autoconfig.head-down-display.option.hotbar.fadeDuration.@Tooltip": "fade duration in ticks",
+    "text.autoconfig.head-down-display.option.hotbar.speed": "speed",
+    "text.autoconfig.head-down-display.option.hotbar.speed.@Tooltip": "the speed at which the hotbar lowers",
+    "text.autoconfig.head-down-display.option.hotbar.acceleration": "acceleration",
+    "text.autoconfig.head-down-display.option.hotbar.acceleration.@Tooltip": "the acceleration at which the hotbar lowers",
+
+    "text.autoconfig.head-down-display.option.arm.mainHandHideCondition": "main arm hide condition",
+    "text.autoconfig.head-down-display.option.arm.mainHandHideCondition.@Tooltip": "the condition that determines when main arm or item should be hidden",
+    "text.autoconfig.head-down-display.option.arm.mainHandHideType": "main arm hide type",
+    "text.autoconfig.head-down-display.option.arm.mainHandHideType.@Tooltip": "whether main arm, item or both should be hidden",
+    "text.autoconfig.head-down-display.option.arm.offHandHideCondition": "secondary arm hide condition",
+    "text.autoconfig.head-down-display.option.arm.offHandHideCondition.@Tooltip": "the condition that determines when secondary arm or item should be hidden"
+}

@@ -1,0 +1,34 @@
+{
+    "schemaVersion": 1,
+    "id": "head-down-display",
+    "version": "0.2.0",
+    "name": "head-down display",
+    "description": "a mod that allows hiding arm and hotbar when not in use",
+    "contact": {
+        "issues": "https://git.auoeke.net/heads-down-display/issues",
+        "sources": "https://git.auoeke.net/heads-down-display"
+    },
+    "authors": [
+        "auoeke"
+    ],
+    "license": "LGPL v3.0",
+    "icon": "assets/head-down-display/icon.png",
+    "environment": "client",
+    "entrypoints": {
+        "client": [
+            {
+                "adapter": "kbootstrap",
+                "value": "headdowndisplay.HDD"
+            }
+        ],
+        "modmenu": [
+            {
+                "adapter": "kbootstrap",
+                "value": "headdowndisplay.HDD$ModMenu"
+            }
+        ]
+    },
+    "mixins": [
+        "head-down-display.mixins.json"
+    ]
+}

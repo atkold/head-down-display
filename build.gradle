@@ -1,16 +1,40 @@
 plugins {
-    id("wheel-fabric").version("latest.integration")
+    id("wheel").version("0-SNAPSHOT")
+    id("kbootstrap").version("latest.integration")
 }
 
 group = "net.auoeke"
-version = "0.1.1"
+version = "0.2.0"
+description = "a mod that allows hiding parts of the head-up display when not in use"
+
+sourceSets {
+    main {
+        java.srcDir("source")
+        kotlin.srcDir("source")
+
+        resources {
+            srcDir("resources")
+            include("assets/", "*.json")
+        }
+    }
+
+    test {
+        java.srcDir("test")
+    }
+}
 
 dependencies {
     modInclude("api-base")
     modInclude("api-key-bindings")
-    modInclude("api-resource-loader")
-    modInclude("api-screen")
-    bloatedInclude("auto-config")
     bloatedInclude("cloth-config")
-    intransitive("mod-menu")
+    mod("mod-menu")
+}
+
+configurations.all {Configuration c ->
+    def ds = c.dependencies
+    ds.all {Dependency d ->
+        if (d.name == "noauth") {
+            ds.remove(d)
+        }
+    }
 }

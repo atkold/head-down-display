@@ -1,0 +1,13 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "package": "headdowndisplay.mixin",
+    "compatibilityLevel": "JAVA_16",
+    "client": [
+        "HeldItemRendererMixin",
+        "InGameHudMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}

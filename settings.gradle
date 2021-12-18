@@ -3,8 +3,8 @@ pluginManagement {
         mavenCentral()
 
         maven {url = "https://maven.fabricmc.net"}
-        maven {url = "https://auoeke.jfrog.io/artifactory/maven"}
+        maven {url = "https://maven.auoeke.net"}
     }
 }
 
-rootProject.name = "heads-down-display"
+rootProject.name = "head-down-display"
